@@ -33,8 +33,8 @@ def load(name):
     img = Image.open(path).convert("RGB").transpose(Image.FLIP_TOP_BOTTOM)
     if img.size != (GRID_W, GRID_H):
         raise ValueError(f"{name} is not {GRID_W}x{GRID_H} pixels")
-    px = img.load()
-    return [[list(px[x, y]) for x in range(GRID_W)] for y in range(GRID_H)]
+    pixels = list(img.getdata())
+    return [[[pixels[(y * GRID_W + x)][0], pixels[(y * GRID_W + x)][1], pixels[(y * GRID_W + x)][2]] for x in range(GRID_W)] for y in range(GRID_H)]
 
 # ── Load a GIF into a list of color[][] arrays (one per frame) ─
 def load_gif(name):
@@ -48,8 +48,8 @@ def load_gif(name):
         frame_img = gif.convert("RGB").transpose(Image.FLIP_TOP_BOTTOM)
         if frame_img.size != (GRID_W, GRID_H):
             raise ValueError(f"{name} frame {f} is not {GRID_W}x{GRID_H} pixels")
-        px = frame_img.load()
-        frames.append([[[px[x, y][0], px[x, y][1], px[x, y][2]] for x in range(GRID_W)] for y in range(GRID_H)])
+        pixels = frame_img.load()
+        frames.append([[[pixels[x, y][0], pixels[x, y][1], pixels[x, y][2]] for x in range(GRID_W)] for y in range(GRID_H)])
     return frames
 
 # ── Pre-load everything once ───────────────────────────────────
