@@ -36,7 +36,7 @@ def main():
         while True:
             if pong_active.is_set():
                 pong = Pong(strip)
-                pong.run(pong_active.is_set)
+                pong.run(lambda: pong_active.is_set())
                 clear(strip)
             else:
                 for i, (data, timing) in enumerate(FRAMES):

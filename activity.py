@@ -1,3 +1,5 @@
+from typing import Callable
+
 class Activity:
     def __init__(self, strip):
         pass
@@ -8,7 +10,7 @@ class Activity:
     def render(self):
         pass
 
-    def run(self, finished_cond):
+    def run(self, finished_cond: Callable[[], bool]):
         while finished_cond():
             self.update()
             self.render()
