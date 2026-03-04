@@ -3,24 +3,7 @@ import threading
 from utils import *
 from pong import Pong
 from rpi_ws281x import PixelStrip
-
-# ── Define frames ──────────────────────────────────────────────
-#   Static image:  (grid,      seconds)
-#   GIF:           (gif_grids, fps)
-FRAMES = [
-    (green670Frame1, 0.5),
-    (green670Frame2, 0.5),
-    (green670Frame1, 0.5),
-    (green670Frame2, 0.5),
-    (green670Frame1, 0.5),
-    (green670Frame2, 0.5),
-    (green670Frame1, 0.5),
-    (green670Frame2, 0.5),
-    (horseProfile,   5),
-    (gallop,         6.0),
-    (TBA670,         5),
-    (HHS, 12.0),
-]
+from animation import Animation
 
 # ── Main loop ──────────────────────────────────────────────────
 def main():
@@ -32,28 +15,22 @@ def main():
     t = threading.Thread(target=controller_listener, daemon=True)
     t.start()
 
+    current_activity_index = 0
+    default_acivity_index = 1
+
+    activities = [
+        Pong(strip, pong_active.is_set),
+        Animation(strip, lambda: not pong_active.is_set())
+    ]
+
     try:
         while True:
-            if pong_active.is_set():
-                pong = Pong(strip)
-                pong.run(lambda: pong_active.is_set())
+            if not activities[current_activity_index].finished_cond():
+                activities[current_activity_index].run()
                 clear(strip)
             else:
-                for i, (data, timing) in enumerate(FRAMES):
-                    if pong_active.is_set():
-                        break
-                    if isinstance(data[0][0][0], list):
-                        spf = 1.0 / timing
-                        for f, grid in enumerate(data):
-                            if pong_active.is_set():
-                                break
-                            print(f"Frame {i+1}/{len(FRAMES)}, GIF frame {f+1}/{len(data)} at {timing}fps")
-                            show_frame(strip, grid)
-                            time.sleep(spf)
-                    else:
-                        print(f"Frame {i+1}/{len(FRAMES)} for {timing}s")
-                        show_frame(strip, data)
-                        time.sleep(timing)
+                activities[default_acivity_index].run()
+                clear(strip)
 
     except KeyboardInterrupt:
         clear(strip)
