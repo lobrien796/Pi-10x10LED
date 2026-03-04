@@ -1,7 +1,5 @@
 import time
 import threading
-import pygame
-import random
 from utils import *
 from pong import Pong
 from rpi_ws281x import PixelStrip
