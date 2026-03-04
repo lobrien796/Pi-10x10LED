@@ -42,7 +42,7 @@ class Pong(Activity):
         pygame.joystick.init()
         self.joysticks = get_joysticks()
 
-        super(strip)
+        super().__init__(strip)
 
     def bot_move(self, paddle_y, ball_y, ball_vx):
         # Only react when ball is heading toward bot (right side, x=9)
