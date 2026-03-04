@@ -21,6 +21,16 @@ def init_state():
         "p1_score": 0, "p2_score": 0,
     }
 
+match_active = threading.Event()
+
+match_state = {
+    "our_score": 0,
+    "their_score": 0,
+    "our_alliance": "red",  # "red" or "blue"
+}
+match_lock = threading.Lock()
+
+
 class Pong(Activity):
     PADDLE_COLOR   = [255, 140, 0  ]
     BALL_COLOR     = [255, 255, 255]
