@@ -3,7 +3,7 @@ from PIL import Image
 import os
 import threading
 import pygame
-from rpi_ws281x import PixelStrip, Color
+from rpi_ws281x import Color
 import time
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"

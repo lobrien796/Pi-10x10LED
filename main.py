@@ -4,6 +4,7 @@ import pygame
 import random
 from utils import *
 from pong import Pong
+from rpi_ws281x import PixelStrip
 
 # ── Define frames ──────────────────────────────────────────────
 #   Static image:  (grid,      seconds)
