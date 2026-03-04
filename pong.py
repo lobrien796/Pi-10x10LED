@@ -34,9 +34,9 @@ class Pong(Activity):
     PONG_TICK     = 0.12
 
     def __init__(self, strip, finished_cond):
+        super().__init__(strip, finished_cond)
         self.state = init_state()
         self.joysticks = get_joysticks()
-        super().__init__(strip, finished_cond)
 
     def bot_move(self, paddle_y, ball_y, ball_vx):
         center = paddle_y + 0.5

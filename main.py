@@ -15,7 +15,7 @@ def main():
     t = threading.Thread(target=controller_listener, daemon=True)
     t.start()
 
-    current_activity_index = 0
+    current_activity_index = 1
     default_acivity_index = 1
 
     activities = [
@@ -25,8 +25,9 @@ def main():
 
     try:
         while True:
-            if not activities[current_activity_index].finished_cond():
+            if activities[current_activity_index].finished_cond():
                 activities[current_activity_index].run()
+                print("test")
                 clear(strip)
             else:
                 activities[default_acivity_index].run()

@@ -14,4 +14,5 @@ class Activity:
     def run(self):
         while self.finished_cond():
             self.update()
+            print("test2")
             self.render()
