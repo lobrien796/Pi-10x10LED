@@ -88,7 +88,7 @@ class Pong(Activity):
         pygame.event.pump()
 
         with controller_lock:
-            count = controller_count
+            count = get_controller_count()
 
         two_player = count >= 2
 

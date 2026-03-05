@@ -27,7 +27,6 @@ def main():
         while True:
             if activities[current_activity_index].finished_cond():
                 activities[current_activity_index].run()
-                print("test")
                 clear(strip)
             else:
                 activities[default_acivity_index].run()
@@ -37,5 +36,5 @@ def main():
         clear(strip)
         print("Stopped.")
 
-if __name__ == "__main__":
-    main()
+
+main()
