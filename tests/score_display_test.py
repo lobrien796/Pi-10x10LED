@@ -1,7 +1,7 @@
 import pygame
 
-GRID_W = 20
-GRID_H = 20
+GRID_W = 10
+GRID_H = 10
 
 # ── 3x5 pixel font (digits 0–9) ───────────────────────────────
 # Each digit is a list of 5 rows, 3 cols wide. 1 = lit, 0 = off.
