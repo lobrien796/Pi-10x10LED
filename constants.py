@@ -1,3 +1,3 @@
-TBA_API_KEY = "your_api_key_here"
-TBA_EVENT_KEY = "2026casjv"
+TBA_API_KEY = "D9t1eAe6quX1eGStgdSrJ95gLWpeDZUW1haZXel6zcqQjzr9McE1PoQiw3F4WaJQ"
+TBA_EVENT_KEY = "2026cahal"
 FRC_TEAM_NUMBER = 670

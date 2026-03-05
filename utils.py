@@ -27,6 +27,15 @@ pong_active    = threading.Event()
 controller_count = 0
 controller_lock  = threading.Lock()
 
+match_active = threading.Event()  # set = match is live, clear = no match
+
+match_state = {
+    "our_score": 0,
+    "their_score": 0,
+    "our_alliance": "red",  # "red" or "blue"
+}
+match_lock = threading.Lock()
+
 # ── Load a static image into a color[][] array ────────────────
 def load(name):
     path = IMAGES_DIR / name
