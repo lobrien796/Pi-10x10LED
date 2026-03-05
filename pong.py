@@ -85,6 +85,8 @@ class Pong(Activity):
         time.sleep(1.0)
 
     def update(self):
+        print("test sigma ohio gyatt pong")
+
         pygame.event.pump()
 
         with controller_lock:

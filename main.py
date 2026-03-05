@@ -36,5 +36,4 @@ def main():
         clear(strip)
         print("Stopped.")
 
-
 main()
