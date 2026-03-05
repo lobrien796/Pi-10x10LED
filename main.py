@@ -15,7 +15,7 @@ def main():
     controller_thread = threading.Thread(target=controller_listener, daemon=True)
     controller_thread.start()
 
-    current_activity_index = 1
+    current_activity_index = 0
     default_acivity_index = 1
 
     activities = [
