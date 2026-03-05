@@ -31,7 +31,6 @@ match_active = threading.Event()  # set = match is live, clear = no match
 
 match_state = {
     "our_score": 0,
-    "their_score": 0,
     "our_alliance": "red",  # "red" or "blue"
 }
 match_lock = threading.Lock()

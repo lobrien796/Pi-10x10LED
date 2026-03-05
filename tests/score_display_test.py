@@ -1,4 +1,7 @@
-from utils import GRID_W, GRID_H, show_grid, match_state, match_lock
+import pygame
+
+GRID_W = 20
+GRID_H = 20
 
 # ── 3x5 pixel font (digits 0–9) ───────────────────────────────
 # Each digit is a list of 5 rows, 3 cols wide. 1 = lit, 0 = off.
@@ -163,10 +166,64 @@ def make_match_grid(our_score, alliance_color):
 
     return g
 
-def show_match_score(strip):
-    """Called from main loop — renders current match state once."""
-    with match_lock:
-        score = match_state["our_score"]
-        alliance = match_state["our_alliance"]
-    g = make_match_grid(score, alliance)
-    show_grid(strip, g)
+screen = pygame.display.set_mode((800, 800))
+
+pygame.display.set_caption("Score Display Test")
+
+grid = make_match_grid(150, "blue")
+
+running = True
+
+cell_size = screen.get_width() / GRID_H
+
+num = 0
+timer = 0
+
+clock = pygame.time.Clock()
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            pygame.quit()
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_LSHIFT:
+                    cell_size -= 5
+                cell_size -= 5
+
+            if event.key == pygame.K_UP:
+                if event.key == pygame.K_LSHIFT:
+                    cell_size += 5
+                cell_size += 5
+
+            if event.key == pygame.K_w:
+                GRID_W += 1
+                GRID_H += 1
+            
+            if event.key == pygame.K_s:
+                GRID_W -= 1
+                GRID_H -= 1
+
+            pygame.display.set_mode((cell_size * GRID_H, cell_size * GRID_H))
+
+    screen.fill("white")
+
+    grid = make_match_grid(num, "blue")
+
+    timer += 1
+    if timer == 12:
+        num += 1
+        timer = 0
+
+    for i, row in enumerate(grid):
+        for j, color in enumerate(row):
+            x = j * cell_size
+            y = i * cell_size
+
+            pygame.draw.rect(screen, color, (x, y, cell_size, cell_size))
+
+    pygame.display.update()
+
+    clock.tick(60)
