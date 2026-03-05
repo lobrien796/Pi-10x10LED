@@ -16,7 +16,7 @@ def main():
     controller_thread.start()
 
     current_activity_index = 0
-    default_acivity_index = 1
+    default_acivity = Animation(strip, lambda: not pong_active.is_set())
 
     activities = [
         Pong(strip, pong_active.is_set),
@@ -29,7 +29,7 @@ def main():
                 activities[current_activity_index].run()
                 clear(strip)
             else:
-                activities[default_acivity_index].run()
+                default_acivity.run()
                 clear(strip)
 
     except KeyboardInterrupt:
