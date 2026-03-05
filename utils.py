@@ -68,6 +68,8 @@ gallop         = load_gif("gallop.gif")
 TBA670         = load("TBA670.png")
 horseProfile   = load("horseProfile.png")
 HHS = load_gif("HHS.gif")
+wifi = load_gif("wifi.gif")
+shooting = load_gif("shooting.gif")
 
 # ── Snake grid mapping ─────────────────────────────────────────
 def xy_to_led(x, y):

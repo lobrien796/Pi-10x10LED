@@ -17,6 +17,8 @@ FRAMES = [
     (gallop,         6.0),
     (TBA670,         5),
     (HHS, 12.0),
+    (wifi, 3.0),
+    (shooting, 6.0)
 ]
 
 class Animation(Activity):
