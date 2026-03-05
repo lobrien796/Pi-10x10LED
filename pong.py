@@ -34,11 +34,11 @@ match_lock = threading.Lock()
 class Pong(Activity):
     PADDLE_COLOR   = [255, 140, 0  ]
     BALL_COLOR     = [255, 255, 255]
-    P1_COLOR       = [220, 40,  40 ]
-    P2_COLOR       = [40,  40,  220]
+    P1_COLOR       = [255, 0,  0 ]
+    P2_COLOR       = [0,  0,  255]
     BG_COLOR       = [0,   0,   0  ]
-    P1_WIN_COLOR   = [255, 0,   180]
-    P2_WIN_COLOR   = [120, 0,   255]
+    P1_WIN_COLOR   = [255, 0,   0]
+    P2_WIN_COLOR   = [0, 0,   255]
 
     WINNING_SCORE = 5
     PONG_TICK     = 0.12
@@ -85,7 +85,6 @@ class Pong(Activity):
         time.sleep(1.0)
 
     def update(self):
-        print("test sigma ohio gyatt pong")
 
         pygame.event.pump()
 
