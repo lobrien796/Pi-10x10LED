@@ -18,7 +18,8 @@ FRAMES = [
     (TBA670,         5),
     (HHS, 12.0),
     (wifi, 3.0),
-    (shooting, 6.0)
+    (intaking, 6.0),
+    (shooting, 6.0),
 ]
 
 class Animation(Activity):
