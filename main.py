@@ -12,8 +12,8 @@ def main():
     strip.begin()
     print("LED strip initialized.")
 
-    t = threading.Thread(target=controller_listener, daemon=True)
-    t.start()
+    controller_thread = threading.Thread(target=controller_listener, daemon=True)
+    controller_thread.start()
 
     current_activity_index = 1
     default_acivity_index = 1

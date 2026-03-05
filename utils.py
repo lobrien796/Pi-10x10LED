@@ -107,3 +107,7 @@ def controller_listener():
             print("No controllers — returning to display.")
             pong_active.clear()
         time.sleep(0.5)
+
+def get_controller_count():
+    global controller_count
+    return controller_count
