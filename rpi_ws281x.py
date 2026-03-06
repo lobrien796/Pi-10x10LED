@@ -14,7 +14,6 @@ class PixelStrip:
         try:
             while self.running:
                 self.screen.fill("white")
-                        
                 for i, row in enumerate(self.display_grid):
                     for j, color in enumerate(row):
                         x = j * self.cell_size

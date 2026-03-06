@@ -35,7 +35,7 @@ class Animation(Activity):
         if isinstance(data[0][0][0], list):
             spf = 1.0 / timing
             for f, grid in enumerate(data):
-                if pong_active.is_set():
+                if controller_connected.is_set():
                     break
                 print(f"Frame {self.frame+1}/{len(FRAMES)}, GIF frame {f+1}/{len(data)} at {timing}fps")
                 show_frame(self.strip, grid)

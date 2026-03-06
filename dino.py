@@ -103,8 +103,9 @@ class Dino(Activity):
         self.grid = [[list(BLACK) for _ in range(GRID_W)] for _ in range(GRID_H)]
         self._reset()
 
-        self.joystick = pygame.joystick.Joystick(0)
-        self.joystick.init()
+        if pygame.joystick.get_count() > 0:
+            self.joystick = pygame.joystick.Joystick(0)
+            self.joystick.init()
 
     def _reset(self) -> None:
         self.player_y = GROUND_Y
@@ -120,7 +121,10 @@ class Dino(Activity):
         self.score_timer = 0
 
     def _joystick_pressed(self) -> bool:
-        return self.joystick.get_button(0)
+        if pygame.joystick.get_count() > 0:
+            return self.joystick.get_button(0)
+        else:
+            return False
 
     def update(self) -> None:
         if self.game_over:

@@ -21,11 +21,11 @@ def main():
     t2.start()
 
     current_activity_index = 0
-    default_acivity = Animation(strip, lambda: not pong_active.is_set())
+    default_acivity = Animation(strip, lambda: not controller_connected.is_set())
 
     activities = [
-        Dino(strip, pong_active.is_set),
-        Animation(strip, lambda: not pong_active.is_set())
+        Dino(strip, controller_connected.is_set),
+        Animation(strip, lambda: not controller_connected.is_set())
     ]
 
     try:

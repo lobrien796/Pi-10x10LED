@@ -11,7 +11,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 # ── Shared state ───────────────────────────────────────────────
-pong_active    = threading.Event()
+controller_connected    = threading.Event()
 controller_count = 0
 controller_lock  = threading.Lock()
 
@@ -68,11 +68,14 @@ def xy_to_led(x, y):
 
 # ── Display a single grid ──────────────────────────────────────
 def show_frame(strip, grid):
+    grid = [[list(BLACK) for _ in range(GRID_W)] for _ in range(GRID_H)]
     for y in range(GRID_H):
         for x in range(GRID_W):
             r, g, b = grid[y][x]
             strip.setPixelColor(xy_to_led(x, y), Color(r, g, b))
+            grid[y][x] = [r, g, b]
     strip.show()
+    return grid
 
 # ── Display pong grid (rotated 180°) ─────────────────────────
 def show_grid(strip, grid):
@@ -98,12 +101,12 @@ def controller_listener():
         count = pygame.joystick.get_count()
         with controller_lock:
             controller_count = count
-        if count >= 1 and not pong_active.is_set():
+        if count >= 1 and not controller_connected.is_set():
             print(f"{count} controller(s) detected — switching to Pong.")
-            pong_active.set()
-        elif count < 1 and pong_active.is_set():
+            controller_connected.set()
+        elif count < 1 and controller_connected.is_set():
             print("No controllers — returning to display.")
-            pong_active.clear()
+            controller_connected.clear()
         time.sleep(0.5)
 
 def get_controller_count():
