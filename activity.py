@@ -1,4 +1,6 @@
 from typing import Callable
+import pygame
+import sys
 
 class Activity:
     def __init__(self, strip, finished_cond: Callable[[], bool]):
@@ -13,5 +15,9 @@ class Activity:
 
     def run(self):
         while self.finished_cond():
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit(0)
+
             self.update()
             self.render()

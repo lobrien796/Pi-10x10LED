@@ -20,6 +20,7 @@ FRAMES = [
     (wifi, 3.0),
     (intaking, 6.0),
     (shooting, 6.0),
+    (load_gif("question.gif"), 3.0)
 ]
 
 class Animation(Activity):

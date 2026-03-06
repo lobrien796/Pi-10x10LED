@@ -85,9 +85,6 @@ class Pong(Activity):
         time.sleep(1.0)
 
     def update(self):
-
-        pygame.event.pump()
-
         with controller_lock:
             count = get_controller_count()
 

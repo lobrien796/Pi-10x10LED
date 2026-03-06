@@ -2,10 +2,10 @@ import time
 import threading
 from utils import *
 from pong import Pong
-from rpi_ws281x import PixelStrip
 from animation import Animation
 from tba import tba_listener
 from match_display import show_match_score
+from rpi_ws281x import PixelStrip
 
 # ── Main loop ──────────────────────────────────────────────────
 def main():

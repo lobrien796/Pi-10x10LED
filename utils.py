@@ -3,7 +3,7 @@ from PIL import Image
 import os
 import threading
 import pygame
-from rpi_ws281x import PixelStrip, Color
+from rpi_ws281x import Color
 import time
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
@@ -38,7 +38,7 @@ match_lock = threading.Lock()
 # ── Load a static image into a color[][] array ────────────────
 def load(name):
     path = IMAGES_DIR / name
-    img = Image.open(path).convert("RGB").transpose(Image.FLIP_TOP_BOTTOM)
+    img = Image.open(path).convert("RGB").transpose(Image.Transpose.FLIP_TOP_BOTTOM)
     if img.size != (GRID_W, GRID_H):
         raise ValueError(f"{name} is not {GRID_W}x{GRID_H} pixels")
     px = img.load()
@@ -53,7 +53,7 @@ def load_gif(name):
     frames = []
     for f in range(gif.n_frames):
         gif.seek(f)
-        frame_img = gif.convert("RGB").transpose(Image.FLIP_TOP_BOTTOM)
+        frame_img = gif.convert("RGB").transpose(Image.Transpose.FLIP_TOP_BOTTOM)
         if frame_img.size != (GRID_W, GRID_H):
             raise ValueError(f"{name} frame {f} is not {GRID_W}x{GRID_H} pixels")
         px = frame_img.load()
