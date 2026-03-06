@@ -95,7 +95,6 @@ def controller_listener():
     pygame.joystick.init()
     print("Controller listener started.")
     while True:
-        pygame.event.pump()
         count = pygame.joystick.get_count()
         with controller_lock:
             controller_count = count

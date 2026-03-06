@@ -1,7 +1,7 @@
 import time
 import threading
 from utils import *
-from pong import Pong
+from dino import Dino
 from animation import Animation
 from tba import tba_listener
 from match_display import show_match_score
@@ -24,7 +24,7 @@ def main():
     default_acivity = Animation(strip, lambda: not pong_active.is_set())
 
     activities = [
-        Pong(strip, pong_active.is_set),
+        Dino(strip, pong_active.is_set),
         Animation(strip, lambda: not pong_active.is_set())
     ]
 

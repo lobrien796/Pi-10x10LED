@@ -18,6 +18,7 @@ class Activity:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit(0)
+                pygame.event.post(event)
 
             self.update()
             self.render()

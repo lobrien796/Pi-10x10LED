@@ -6,6 +6,13 @@ GRID_H = 10
 # ── 3x5 pixel font (digits 0–9) ───────────────────────────────
 # Each digit is a list of 5 rows, 3 cols wide. 1 = lit, 0 = off.
 DIGITS = {
+    " ": [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
+    ],
     ".": [
         [0,0,0],
         [0,0,0],
@@ -128,7 +135,7 @@ def _draw_score(g, score, color1, color2):
     score_str = str(max(min(score, 999), -99))
 
     if len(score_str) < 3:
-        score_str = "0" * (3 - len(score_str)) + score_str
+        score_str = " " * (3 - len(score_str)) + score_str
 
     current_x = 0
     iteration = 0
@@ -210,7 +217,7 @@ while running:
 
     screen.fill("white")
 
-    grid = make_match_grid(num, "red")
+    grid = make_match_grid(num, "blue")
 
     timer += 1
     if timer == 12:

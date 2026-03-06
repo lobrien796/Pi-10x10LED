@@ -11,22 +11,25 @@ BLACK = [0, 0, 0]
 
 class PixelStrip:
     def loop(self):
-        while self.running:
-            self.screen.fill("white")
-                    
-            for i, row in enumerate(self.display_grid):
-                for j, color in enumerate(row):
-                    x = j * self.cell_size
-                    y = i * self.cell_size
+        try:
+            while self.running:
+                self.screen.fill("white")
+                        
+                for i, row in enumerate(self.display_grid):
+                    for j, color in enumerate(row):
+                        x = j * self.cell_size
+                        y = i * self.cell_size
 
-                    pygame.draw.rect(self.screen, color, (x, y, self.cell_size, self.cell_size))
+                        pygame.draw.rect(self.screen, color, (x, y, self.cell_size, self.cell_size))
 
-            pygame.display.update()
+                pygame.display.update()
 
-            self.clock.tick(60)
+                self.clock.tick(60)
 
-        pygame.quit()
-        self.window_thread.join()
+            pygame.quit()
+            self.window_thread.join()
+        except:
+            print("Stopping Emulator")
 
     def stop_loop(self):
         self.window_thread.join()
@@ -47,7 +50,7 @@ class PixelStrip:
                 
         self.screen = pygame.display.set_mode((800, 800))
 
-        pygame.display.set_caption("Score Display Test")
+        pygame.display.set_caption("RaspBerryPi 10x10LED Emulator")
 
         self.running = True
 
