@@ -1,4 +1,5 @@
-from utils import GRID_W, GRID_H, show_grid, match_state, match_lock
+from utils import show_grid, match_state, match_lock
+from constants import *
 
 # ── 3x5 pixel font (digits 0–9) ───────────────────────────────
 # Each digit is a list of 5 rows, 3 cols wide. 1 = lit, 0 = off.

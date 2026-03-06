@@ -210,7 +210,7 @@ while running:
 
     screen.fill("white")
 
-    grid = make_match_grid(num, "blue")
+    grid = make_match_grid(num, "red")
 
     timer += 1
     if timer == 12:

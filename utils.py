@@ -5,22 +5,10 @@ import threading
 import pygame
 from rpi_ws281x import Color
 import time
+from constants import *
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
-
-# ── LED Configuration ──────────────────────────────────────────
-LED_COUNT      = 100
-LED_PIN        = 18
-LED_FREQ_HZ    = 800000
-LED_DMA        = 10
-LED_BRIGHTNESS = 128
-LED_INVERT     = False
-LED_CHANNEL    = 0
-
-GRID_W = 10
-GRID_H = 10
-IMAGES_DIR = Path(__file__).parent / "images"
 
 # ── Shared state ───────────────────────────────────────────────
 pong_active    = threading.Event()

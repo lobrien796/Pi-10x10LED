@@ -3,6 +3,7 @@ import random
 import pygame
 import time
 from utils import *
+from constants import *
 
 def get_joysticks():
     pygame.joystick.init()
