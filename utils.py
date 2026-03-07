@@ -68,14 +68,11 @@ def xy_to_led(x, y):
 
 # ── Display a single grid ──────────────────────────────────────
 def show_frame(strip, grid):
-    grid = [[list(BLACK) for _ in range(GRID_W)] for _ in range(GRID_H)]
     for y in range(GRID_H):
         for x in range(GRID_W):
             r, g, b = grid[y][x]
             strip.setPixelColor(xy_to_led(x, y), Color(r, g, b))
-            grid[y][x] = [r, g, b]
     strip.show()
-    return grid
 
 # ── Display pong grid (rotated 180°) ─────────────────────────
 def show_grid(strip, grid):

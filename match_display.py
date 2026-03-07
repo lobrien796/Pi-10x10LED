@@ -39,7 +39,7 @@ def _draw_score(g, score, color1, color2):
             color = color1
         else:
             color = color2
-        _draw_digit(g, character, current_x, 0, color)
+        _draw_digit(g, character, current_x, 3, color)
 
         if iteration == 0:
             current_x -= 4

@@ -1,11 +1,12 @@
 import time
 import threading
 from utils import *
-from dino import Dino
+from game_selector import GameSelector
 from animation import Animation
 from tba import tba_listener
 from match_display import show_match_score
 from rpi_ws281x import PixelStrip
+import sys
 
 # ── Main loop ──────────────────────────────────────────────────
 def main():
@@ -24,17 +25,17 @@ def main():
     default_acivity = Animation(strip, lambda: not controller_connected.is_set())
 
     activities = [
-        Dino(strip, controller_connected.is_set),
+        GameSelector(strip, controller_connected.is_set),
         Animation(strip, lambda: not controller_connected.is_set())
     ]
 
     try:
         while True:
             if match_active.is_set():
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        sys.exit(0)
                 show_match_score(strip)
-                while match_active.is_set():
-                    time.sleep(0.5)
-                clear(strip)
 
             elif activities[current_activity_index].finished_cond():
                 activities[current_activity_index].run()
