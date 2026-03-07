@@ -7,6 +7,7 @@ from tba import tba_listener
 from match_display import show_match_score
 from rpi_ws281x import PixelStrip
 import sys
+from constants import *
 
 # ── Main loop ──────────────────────────────────────────────────
 def main():
@@ -28,8 +29,6 @@ def main():
         lambda: GameSelector(strip, controller_connected.is_set),
         lambda: Animation(strip, lambda: not controller_connected.is_set() and not (match_active.is_set() and is_playing))
     ]
-
-    is_playing = True
 
     try:
         while True:

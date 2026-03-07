@@ -122,3 +122,5 @@ YELLOW = [255, 192, 0]
 RED    = [255, 103, 80]
 BLUE   = [0, 84, 255]
 GREEN: list[int] = [0, 255, 0]
+
+is_playing = True
