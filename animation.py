@@ -28,6 +28,7 @@ class Animation(Activity):
     def __init__(self, a, b):
         super().__init__(a, b)
         self.frame = 0
+        self.frame_start_time = 0
 
     def update(self):
         data = FRAMES[self.frame][0]
@@ -41,9 +42,15 @@ class Animation(Activity):
                 print(f"Frame {self.frame+1}/{len(FRAMES)}, GIF frame {f+1}/{len(data)} at {timing}fps")
                 show_frame(self.strip, grid)
                 time.sleep(spf)
+
+            self.frame = (self.frame + 1)%len(FRAMES)
+            self.frame_start_time = time.time()
+
         else:
             print(f"Frame {self.frame+1}/{len(FRAMES)} for {timing}s")
             show_frame(self.strip, data)
-            time.sleep(timing)
 
-        self.frame = (self.frame + 1)%len(FRAMES)
+            if time.time() - self.frame_start_time > timing:
+                self.frame = (self.frame + 1)%len(FRAMES)
+                    
+                self.frame_start_time = time.time()

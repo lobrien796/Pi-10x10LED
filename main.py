@@ -22,11 +22,11 @@ def main():
     t2.start()
 
     current_activity_index = 0
-    default_acivity = Animation(strip, lambda: not controller_connected.is_set())
+    default_acivity = lambda: Animation(strip, lambda: not controller_connected.is_set())
 
     activities = [
-        GameSelector(strip, controller_connected.is_set),
-        Animation(strip, lambda: not controller_connected.is_set())
+        lambda: GameSelector(strip, controller_connected.is_set),
+        lambda: Animation(strip, lambda: not controller_connected.is_set())
     ]
 
     try:
@@ -37,11 +37,11 @@ def main():
                         sys.exit(0)
                 show_match_score(strip)
 
-            elif activities[current_activity_index].finished_cond():
-                activities[current_activity_index].run()
+            elif activities[current_activity_index]().finished_cond():
+                activities[current_activity_index]().run()
                 clear(strip)
             else:
-                default_acivity.run()
+                default_acivity().run()
                 clear(strip)
 
     except KeyboardInterrupt:
