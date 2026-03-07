@@ -29,9 +29,11 @@ def main():
         lambda: Animation(strip, lambda: not controller_connected.is_set())
     ]
 
+    is_playing = False
+
     try:
         while True:
-            if match_active.is_set():
+            if match_active.is_set() and is_playing:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         sys.exit(0)
