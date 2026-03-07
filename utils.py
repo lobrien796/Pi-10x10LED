@@ -99,10 +99,10 @@ def controller_listener():
         with controller_lock:
             controller_count = count
         if count >= 1 and not controller_connected.is_set():
-            print(f"{count} controller(s) detected — switching to Pong.")
+            print(f"{count} controller(s) detected — switching to Game Selection.")
             controller_connected.set()
         elif count < 1 and controller_connected.is_set():
-            print("No controllers — returning to display.")
+            print("No controllers — returning to default animation.")
             controller_connected.clear()
         time.sleep(0.5)
 

@@ -22,14 +22,14 @@ def main():
     t2.start()
 
     current_activity_index = 0
-    default_acivity = lambda: Animation(strip, lambda: not controller_connected.is_set())
+    default_acivity = lambda: Animation(strip, lambda: not controller_connected.is_set() and not (match_active.is_set()and is_playing))
 
     activities = [
         lambda: GameSelector(strip, controller_connected.is_set),
-        lambda: Animation(strip, lambda: not controller_connected.is_set())
+        lambda: Animation(strip, lambda: not controller_connected.is_set() and not (match_active.is_set() and is_playing))
     ]
 
-    is_playing = False
+    is_playing = True
 
     try:
         while True:

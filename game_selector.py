@@ -3,6 +3,7 @@ import pygame
 from activity import Activity
 from typing import Callable
 from dino import Dino
+from flappybird import FlappyBird
 from pong import Pong
 
 from utils import *
@@ -13,11 +14,15 @@ def no_condition():
 games = [
     [
         lambda strip: Dino(strip, no_condition),
-        "dino_cover.png"
+        load("dino_cover.png")
     ],
     [
         lambda strip: Pong(strip, no_condition),
-        "pong_cover.png"
+        load("pong_cover.png")
+    ],
+    [
+        lambda strip: FlappyBird(strip, no_condition),
+        load("flappybird_cover.png")
     ],
 ]
 
@@ -30,6 +35,7 @@ class GameSelector(Activity):
 
         if pygame.joystick.get_count() > 0:
             self.joystick = pygame.joystick.Joystick(0)
+            self.joystick.init()
 
     def right_pressed(self, zone=0.5):
         if pygame.joystick.get_count() > 0:
@@ -58,8 +64,10 @@ class GameSelector(Activity):
             if not self.current_game.finished_cond():
                 self.current_game.update()
                 if self.menu_pressed():
+                    del self.current_game
                     self.current_game = None
             else:
+                del self.current_game
                 self.current_game = None
         else:
             if self.left_pressed(): self.current_game_index -= 1
@@ -79,26 +87,26 @@ class GameSelector(Activity):
                 self.current_game = None
             
         else:
-            current_image = load(games[self.current_game_index][1])
+            current_image = games[self.current_game_index][1]
 
-            grid = current_image
+            grid = list(current_image)
             grid.reverse()
 
             # Arrows
 
-            # grid[5][9] = WHITE
-            # grid[6][9] = WHITE
-            # grid[4][8] = WHITE
-            # grid[5][8] = WHITE
-            # grid[6][8] = WHITE
-            # grid[7][8] = WHITE
+            grid[4][9] = WHITE
+            grid[5][9] = WHITE
+            grid[3][8] = WHITE
+            grid[4][8] = WHITE
+            grid[5][8] = WHITE
+            grid[6][8] = WHITE
             
-            # grid[5][0] = WHITE
-            # grid[6][0] = WHITE
-            # grid[4][1] = WHITE
-            # grid[5][1] = WHITE
-            # grid[6][1] = WHITE
-            # grid[7][1] = WHITE
+            grid[4][0] = WHITE
+            grid[5][0] = WHITE
+            grid[3][1] = WHITE
+            grid[4][1] = WHITE
+            grid[5][1] = WHITE
+            grid[6][1] = WHITE
 
             show_grid(self.strip, grid)
             time.sleep(0.1)
