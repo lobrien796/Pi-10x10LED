@@ -34,18 +34,18 @@ class GameSelector(Activity):
     def right_pressed(self, zone=0.5):
         if pygame.joystick.get_count() > 0:
             return self.joystick.get_axis(5) > zone or self.joystick.get_button(5)
-        return pygame.key.get_just_pressed()[pygame.K_RIGHT]
+        return False
     
     def left_pressed(self, zone=0.5):
         if pygame.joystick.get_count() > 0:
             return self.joystick.get_axis(4) > zone or self.joystick.get_button(4)
-        return pygame.key.get_just_pressed()[pygame.K_LEFT]
+        return False
     
     def a_pressed(self):
         if pygame.joystick.get_count() > 0:
             return self.joystick.get_button(0)
         else:
-            return pygame.key.get_just_pressed()[pygame.K_a]
+            return False
         
     def menu_pressed(self):
         if pygame.joystick.get_count() > 0:
