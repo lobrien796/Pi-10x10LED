@@ -1,8 +1,10 @@
 from pathlib import Path
 
-TBA_API_KEY = "D9t1eAe6quX1eGStgdSrJ95gLWpeDZUW1haZXel6zcqQjzr9McE1PoQiw3F4WaJQ"
-TBA_EVENT_KEY = "2026cahal"
-FRC_TEAM_NUMBER = 670
+TBA_API_KEY = "key here"
+TBA_EVENT_KEY = "2026mdsev"
+NEXUS_API_KEY = "NlxQapPxnmywQBVYjQaYWn2678U"
+NEXUS_EVENT_KEY = "demo8399"
+FRC_TEAM_NUMBER = "670"
 
 # ── LED Configuration ──────────────────────────────────────────
 LED_COUNT      = 100

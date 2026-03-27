@@ -8,6 +8,7 @@ from match_display import show_match_score
 from rpi_ws281x import PixelStrip
 import sys
 from constants import *
+from match_display_poll import *
 
 # ── Main loop ──────────────────────────────────────────────────
 def main():
@@ -21,6 +22,8 @@ def main():
     
     t2 = threading.Thread(target=tba_listener, daemon=True)
     t2.start()
+
+    start_poll()
 
     current_activity_index = 0
     default_acivity = lambda: Animation(strip, lambda: not controller_connected.is_set() and not (match_active.is_set()and is_playing))
